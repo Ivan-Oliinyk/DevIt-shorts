@@ -1,0 +1,30 @@
+uptime -> show how much time work computer
+uname -a  ->show version linus and all informations about here
+lscpu -?show information about proccesor
+clear -?clear window terminal
+
+$PATH -> show directory we were search command
+echo $PATH
+
+man -k (word from command ) ->run Help 
+after we find the right command we do next
+man (the right command)
+
+whatis pwd ->show information about command
+whereis pwd -> show where localization command
+
+ps -> show what commands run in my computer
+fg -> return process
+
+ping www.google.com -> whow ping www.google.com
+ctr+c -> stop this command
+ctr+z -> sleep this command
+
+ls -la -R / ->show all files in computer :)
+
+pwd -> show directiry;
+ls -> show fiels
+ls -l -> show files
+ls ->a
+ls -l ->a
+
