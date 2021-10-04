@@ -1,0 +1,4 @@
+/home/ivan/Desktop/practicJS/lesson_12_1/src/index.html
+/home/ivan/Desktop/practicJS/lesson_12_1/src/index.js
+/home/ivan/Desktop/practicJS/lesson_12_1/src/templates/pokemon-card.hbs
+/home/ivan/Desktop/practicJS/lesson_12_1/package.json

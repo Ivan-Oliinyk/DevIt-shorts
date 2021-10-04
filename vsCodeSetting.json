@@ -1,0 +1,41 @@
+{
+    "explorer.confirmDelete": false,
+    "window.zoomLevel": 1,
+    "files.autoSave": "onFocusChange",
+    "editor.minimap.enabled": false,
+    "liveServer.settings.AdvanceCustomBrowserCmdLine": "",
+    "liveSassCompile.settings.formats": [
+      {
+        "format": "expanded",
+        "extensionName": ".css",
+        "savePath": "~/../css/"
+      },
+  
+      {
+        "format": "compressed",
+        "extensionName": ".min.css",
+        "savePath": "~/../css/"
+      }
+    ],
+    "liveSassCompile.settings.autoprefix": ["> 1%", "last 2 versions"],
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false,
+    "editor.codeActionsOnSave": null,
+    "editor.formatOnSave": true,
+  
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+  
+    "security.workspace.trust.untrustedFiles": "open",
+    "editor.quickSuggestions": null,
+    "editor.fontLigatures": null,
+    "workbench.colorTheme": "Sublime Material Theme - Dark",
+    "gitlens.advanced.messages": {
+      "suppressGitDisabledWarning": true
+    },
+    "workbench.iconTheme": "vscode-icons"
+  }
