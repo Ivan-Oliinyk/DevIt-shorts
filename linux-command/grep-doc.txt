@@ -1,0 +1,3 @@
+grep "Class 1" student.txt -> поиск строки "Class 1" в student.txt
+grep -e "Class" -e Henry student.txt -> (-е вопринимается как или-или) тоесть ищет совпадения с Class and Henry
+ 
