@@ -337,3 +337,18 @@ wget - скачивание файлов
 
 -ssh -keygen -t rsa -b 2048  -> сгенирировать ссш ключ на свой коммп
 -ssh -copy -id dev@192.168.0.103 -> закидываме свой ключ в чюжую машину
+
+-find
+ find .
+ find . -print
+ find ./test
+ find . -name "*.jpg"
+ find . -iname "test*"
+ find . -not -name "test*"
+ find . -name "test" -not -name "*.php"
+ find -name "*.html" -o -name "*.php" -> или то или другое
+ find ~ -type f -name ".*" - найди скритые файлы
+ 
+ apt 
+ apt-cache pkgnames mongo - ищем установочный пакет mongo
+ 
