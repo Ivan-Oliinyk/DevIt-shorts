@@ -1,0 +1,18 @@
+ssh-keygen # Генерируем новый ключ под BitBucket
+mkdir ~/Project/repo
+cd ~/Project/repo
+git init 
+git config user.name "User name"
+git config user.email "user email"
+git config core.sshCommand "ssh -i ~/.ssh/path_to_key.pub -F /dev/null" # Прописываем путь к публичному ключу 
+git remote add origin address_from_bitbucket # Копируйте адрес с BitBucket
+git add --all 
+git commit 
+git push -u origin master
+
+ssh-keygen
+
+git config user.name "Ivan Oleynik"
+git config user.email "lorf1991@gmail.com"
+git remote add origin ssh://git@bitbucket.devit-team.com/~ivan.oleynik.sh5/project.git
+git config core.sshCommand "ssh -i ~/.ssh/bucket.pub -F /dev/null"
