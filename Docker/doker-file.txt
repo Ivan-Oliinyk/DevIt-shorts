@@ -1,3 +1,5 @@
+sudo usermod -aG docker $(whoami) 
+
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io
 sudo docker run hello-world
@@ -6,6 +8,44 @@ docker run --help
 sudo chmod 666 /var/run/docker.sock
 docker run -it ubuntu bash
 
-sudo usermod -aG docker ivan
+sudo usermod -aG docker ivan -> 
+
 sudo service docker restart
 
+docker run -it ubuntu bash -> -it - сообщают что необходимо создать сеанс интерактивной работы на подключаемом устройстве, команда bash инициализирует терминальную оболочку bash
+docker run -h ivan -it ubuntu bash -> создаем новый контенер
+docker run --name StartDocker -it ubuntu bash -> создаем процес с именем StartDocker (имя можно создать любое) 
+
+
+docker ps -a -> вывести список всех контейнеров
+docker ps -> вывести список только запущенных контенеров
+docker start container-name(colomn NAMES) - запускаем остановленный контейнер 
+docker stop container-name(colomn NAMES) - остановить запущенный контейнер
+
+docker run -h ivan -it ubuntu bash -> создаем новый контенер 
+docker inspect conatainer-name -> получить больше информации о контенере
+
+docker run --name StartDocker -it ubuntu bash -> создаем процес с именем StartDocker (имя можно создать любое)
+docker diff StartDocker -> показывает измнения в контейнере (в данном случая StartDocker)
+docker logs StartDocker -> показывает список всех изменений  в контейнере (в данном случая StartDocker)
+docker logs -f daemon -> -f следит за выводом журнала (deamon - имя  контейнера)
+docker rm name-container -> удаляем контейнер по имени,  можно выбрать сразу несколько
+
+docker ps -aq -f status=exited -> выводит идентоификаторы всех контейнеров со статусом exited
+docker rm $(docker ps -aq -f status=exited) -> удалит все контейнеры со статусом  exited
+docker rm  -f $(docker ps -aq) -> удалит все контейнера (-f (для rm) должен остановить контейнер, если он работает(принудительное удаление))
+
+docker run -d tomee -> 
+  (-d означает запуск в фоновом режиме)
+  tomme -> контейнер взятый с сайта https://hub.docker.com/ (в поиске apache и выбираем)
+
+Для дальнейшей проьроски контейнера необходимо:
+  1) Остановить работу контейнера docker stop container-name
+  2) Пробросить контейнер в фоновом режиме 
+  docker run -d -p 8000:8080 tomee (где 8080 - порт      	 
+     контейнера, а 8000 порт на нашем localhost tomee название -IMAGE(образ))
+
+
+docker images - посмотреть все образы 
+
+docker rmi -f $(docker images -q) - удалить все образы 

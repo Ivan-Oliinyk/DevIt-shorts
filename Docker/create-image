@@ -1,0 +1,69 @@
+1)Создать учетную запись на docker hub
+	выполняем где вводим  имя(с акканута docker hub) и пароль (с аккаунта docker hub)
+	
+	docker login
+
+2)Cоздаем контейнер 
+  
+  docker run -it --name myapp --hostname myapp ubuntu bash
+  
+  2.1)Мы в контейнeре, обновляем индексы 
+      
+      apt update
+      
+  2.2)Ставим пакет 
+      
+      apt install cowsay
+      
+  2.3)Создаем символьную ссылку чтобы при запуску не писать полный путь к приложению
+  
+  	ln -s /usr/games/cowsay /usr/bin/cowsay  (путь к бинарной директории и имя ссылки 
+  							на установленное приложение)
+  
+  	теперь можо вызвать приложение  с помощью cowsay "Test"
+  	(вместо /usr/games/cowsay)
+  	
+  	(РЕЗУЛЬТАТ)
+  	
+  	< Test >
+ ------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+3)Превращаем контейнер в образ
+	для этого необходимо сделать коммит 
+	
+	docker commit myapp lorf91/myapp2 
+	
+	где myapp - имя контейнера
+	    lorf91 - login/id on dockerhub
+	    myapp2 - имя которое будет у репозиторя на dockerhub
+	
+	после должен вернуться уникальный идентификатор созданного образа
+	
+	Теперь проверка выполним запуск с образа 
+	docker run lorf91/myapp2 cowsay "1123"
+	
+4)Для пуша репозитория  на docker hub необходимо 
+
+	docker push lorf91/myapp2
+	
+	где lorf91 - имя на dockerhub
+	    myapp2 - имя репозиторя  который будет создан
+	 
+5)Удаляем контейнер и образ 
+	
+	docker rm -v $(docker ps -aq -f status=exited) - удалит все контейнеры со 
+								статусом exitrd
+	
+	docker rmi -f $(docker images -q) - удалит все образы
+
+6)Далее для запуска с репозиторя вводим 
+
+	docker run lorf91/myapp2 cowsay "this is Cow"   	
+	
+
+	
