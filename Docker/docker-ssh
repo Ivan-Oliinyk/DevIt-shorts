@@ -16,6 +16,6 @@ CMD ["/usr/sbin/sshd","-D"]
 
 
 docker build -t ssh-ubuntu-1 .
-docker run -d -p 127.0.0.3333:22/tcp ssh-ubuntu-1
+docker run -d -p 127.0.0.1:3333:22/tcp ssh-ubuntu-1
 docker run -d -p 127.0.0.1:5555:22/tcp ssh-ubuntu-1
 ssh test@localhost -p 5555
