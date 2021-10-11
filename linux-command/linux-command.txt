@@ -9,6 +9,7 @@
 
 nano ~/.bashrc
 
+hostname -i 
 
 uptime -> show how much time work computer
 uname -a  ->show version linus and all informations about here
