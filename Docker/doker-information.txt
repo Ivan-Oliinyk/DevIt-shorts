@@ -29,7 +29,10 @@ docker run --name StartDocker -it ubuntu bash -> создаем процес с 
 docker diff StartDocker -> показывает измнения в контейнере (в данном случая StartDocker)
 docker logs StartDocker -> показывает список всех изменений  в контейнере (в данном случая StartDocker)
 docker logs -f daemon -> -f следит за выводом журнала (deamon - имя  контейнера)
+
 docker rm name-container -> удаляем контейнер по имени,  можно выбрать сразу несколько
+
+docker rmi -f $(docker images -q) - удалить все образы 
 
 docker ps -aq -f status=exited -> выводит идентоификаторы всех контейнеров со статусом exited
 docker rm $(docker ps -aq -f status=exited) -> удалит все контейнеры со статусом  exited
@@ -48,4 +51,4 @@ docker run -d tomee ->
 
 docker images - посмотреть все образы 
 
-docker rmi -f $(docker images -q) - удалить все образы 
+

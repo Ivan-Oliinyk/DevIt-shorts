@@ -1,0 +1,18 @@
+1) Создаем директорию под хранения проэетов
+2) В папке где будет храниться проэкт создаем файл Dockerfile
+	FROM -  задать базовый образ
+	MAINTAINER lorf91 <lorf91@gmail.com> (для информации о авторе)
+	RUN – выполнить команду в контейнере 
+	  (RUN apt-get update && apt-get install -y cowsay && ln -s /usr/games/cowsay /usr/bin/cowsay)
+	ENTRYPOINT ["cowsay"]
+	
+3)Далее переходим в папку с файлом (Dockerfile) и выполняем 
+
+	docker build -t lorf91/myapp .
+	
+4)После чего можно выполнить запуск
+	
+	docker run lorf91/myapp "OPS"
+
+5)	
+	
