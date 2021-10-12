@@ -1,0 +1,84 @@
+УСТАНОВКА DOCKER
+****************************************************************************************
+
+sudo apt update
+
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+
+sudo apt update
+
+sudo apt install docker-ce
+
+sudo systemctl status docker
+
+sudo usermod -aG docker $USER
+
+#############################################
+ПЕРЕЗАПУСТИТЕ СИСТЕМУ!!!
+#############################################
+
+
+НУЖНО СОЗДАТЬ ПАПКУ ГДЕ БУДЕТ ЛЕЖАТЬ ФАЙЛ "Dockerfile" С ЭТОЙ ПАПКИ И БУДЕТ ВЫЗВАН БИЛД
+****************************************************************************************
+
+FROM ubuntu:latest
+
+RUN apt update && apt install  openssh-server sudo -y
+
+RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test 
+
+RUN  echo 'test:test' | chpasswd
+
+RUN service ssh start
+
+EXPOSE 22
+
+CMD ["/usr/sbin/sshd","-D"]
+
+
+БИЛД ОБРАЗА - СОЗДАНИЕ КОНТЕЙНЕРОВ - ПОДКЛЮЧЕНИЕ
+*********************************************************************************
+
+docker build -t IMAGE_NAME .
+
+---------------------------------------------------------------------------------
+
+docker run -d -p 127.0.0.1:5000:22/tcp --name docker_1 IMAGE_NAME
+
+docker run -d -p 127.0.0.1:5001:22/tcp --name docker_2 IMAGE_NAME
+
+---------------------------------------------------------------------------------
+
+ssh test@localhost -p 5000
+ssh test@localhost -p 5001
+
+
+
+
+
+
+ПОЛЕЗНЫЕ КОМАНДЫ И СОВЕТЫ
+*********************************************************************************
+1. hostname -I 				 // узнать IP данной машины или docker контейнера
+2. docker port DOCKER_ID или DOCKER_NAME // показать порт docker контейнера
+
+1. docker ps -a 			 // показать все docker проццесы
+2. docker kill DOCKER_ID или DOCKER_NAME // останавливает docker проццесы
+3. docker rm DOCKER_ID или DOCKER_NAME   // удаляет docker проццесы
+
+1. docker images 			 // показывает образ "те/тот что создался из Dockerfile"
+2. docker rmi IMAGE_ID или IMAGE_NAME 	 // удаляет образ 
+
+
+
+- Лучше не менять поля "test:test" в файле "Dockerfile", если меняйте
+ставте нормальное. Пример: "username:vasa", "password:654321"
+
+- Если выбивает красивую ошибку WARNING при конекте, почистите на своей машине 
+"authorized_keys" в ~/.ssh
+
+- Проверяйте IP и PORT при переброске тунеля или конекте
