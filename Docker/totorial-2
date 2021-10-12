@@ -1,0 +1,63 @@
+# ФС - создаем папку remote_server в папке Documents. В Documents создаем Dockerfile и тудаже геренируем ключи
+
+FROM ubuntu:latest
+# 1 Создаем каталог sshd в пути /var/run/sshd
+#-p чтобы создать родительские каталоги
+RUN mkdir -p /var/run/sshd
+# 2 Обновить базу данных и устанавливаем пакеты
+RUN apt update && \
+    apt install -y openssh-server
+# 3Используем обычного юзера вместо root
+# -s используем оболочку bash
+RUN useradd -rm -d /home/remote_user -s /bin/bash remote_user && \
+    # Gfhjkm lkz elfktyyjuj .pthf
+    # 4 chpasswd Используем авторизациб по ключу вместо пароля и логина
+    echo remote_user:password1234 | chpasswd
+# 5 Создаем каталог .ssh внутри каталога /home/remote_user/
+RUN mkdir /home/remote_user/.ssh && \
+    # 6 Предоставляем все права на файлвладельцу каталога .ssh
+    chmod 700 /home/remote_user/.ssh
+# 7 Копируем файл ключа из текущего каталога в каталог .ssh и изменяем его имя на authorized_keys
+COPY id_rsa.pub /home/remote_user/.ssh/authorized_keys
+
+# 8 Рекурсивно меняем владельца каталога .ssh на remote_user
+RUN chown remote_user:remote_user -R /home/remote_user/.ssh && \
+    # 9 применяем разрешения на чтение и запись
+    chmod 600 /home/remote_user/.ssh/authorized_keys
+# 10 Запускаем демона ssh
+CMD [ "/usr/sbin/sshd", "-D" ]
+
+
+# Дополнительно:
+#    - После создания аутентификации по ключу (4) генерируем ключи в папке с Dokerfile
+#      ssh-keygen -t rsa -m PEM -f id_rsa
+
+# После возвращаемся к Dokerfile к шагу (5)
+# После шага (10) в терминале создаем образ с помощью docker build
+    # -t тег remote_user
+    # . ссфлка на текущий каталог, чтобы найти файл Docker
+
+    # docker build -t remote_server .
+
+    # После установки запускаем контейнер на основе этого image
+    # --name remote_server - называем его remote_server
+    # -it - запускаем в интерактивном режиме
+    # ssh 22 - порт по умолчанию для клиентских подключений, поэтому перебрасываем его на порт 5888
+    # docker run -d --name remote_server -it -p 5888:22/tcp remote_server
+
+    # Контейнер создается и после этого подключаемся к удаленной машине 
+    # ssh remote_user@localhost -p 5888
+
+    # При первом запуске попросит подтверждение и отпечаток ключа
+    # password1234
+
+    # Выйдем с удаленной машины и подключимся с использованием закрытого ключа
+    # В папке remote-server проверим наличие ключей
+    # ll
+
+    # Используем ssh с -i и именем ключа подключаюшегося к remote_user@localhost 
+    # ssh -i id_rsa remote_user@localhost -p 5888
+
+    # Теперь при подключении пароль запрашиваться не будет, потому что мы прошли аутентификацию с использованием ключа
+
+    # Если мы хотим подключиться к этому удаленному серверу внутри Docker, на пример из другого контейнера, мы можем подключить оба контейнера к одной сети. В этом случае нет необходимости назначать порт для подключения к удаленному серверу
