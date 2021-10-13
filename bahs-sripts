@@ -1,0 +1,8 @@
+1)Создаем папку где будет храниться скрипт (.myscript) в нем файл (my_first_script.sh) (в скрипте пише echo "Hello world!")
+  *(в файле my_first_script.sh необходимо вначале указать #!/bin/bash)
+2)В терминале добавляем доступ к файлу 
+    sudo chmod +x ~/.myscript/my_first_script.sh
+3)Для запуска теперь необходимо ~/.myscript/my_first_script.sh
+
+ПЕРЕМЕННЫЕ
+Должны быть указаны до начала исполнения
