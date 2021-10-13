@@ -98,6 +98,24 @@ read
             echo "На этот товар скидок нету";;
      esac
      
+  ВЛОЖЕННОСТЬ ОПЕРАТОРОВ 
+     echo "Enter phone model"
+     read brand
+     if [[ $brand == "samsung" ]] || [[ $brand == "nokia" ]] || [[ $brand == "mi" ]] || [[ $brand == "iphone" ]]; then 
+       case $brand in 
+         samsung)
+           echo "You have bonus from model $brand 15%";;
+         nokia) 
+           echo "You have bonus from model $brand 20%";;
+         mi)
+           echo "You have bonus frmo model $brand 17%";;
+         *)
+           echo "We dont have bonus for model $brand";;    
+       esac
+
+     else 
+       echo "$brand is not a brand)))"
+     fi
      
    
 
