@@ -146,11 +146,29 @@ read
     echo ${Array[@]}
     echo ${Array2[@]}
 
+ЦИКЛЫ
     for i in ${!Array2[@]}; do #выводим все эелементы массива через цикл фор
       echo "${Array2[$i]}"
     done
 
-     
+    for 
+    Array2=(55 ggg top 787812)
+
+    for i in ${!Array2[@]}; do #выводим все эелементы массива через цикл фор
+      echo "${Array2[$i]}"
+    done
+
+    for ((i=0; i<=12; i+=2)); do 
+      echo $i;
+    done
+
+    n=1
+    while [ $n -lt 4 ] #условия зписывать только символама =  < > не работает в while
+      do
+        echo "$n"
+        n=$(( $n+1 ));
+    done
+
    
 
 
