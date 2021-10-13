@@ -43,4 +43,22 @@
       ~/.myscript/lesson3.sh Ivan
     вывод 
       Hello Ivan
+      
+read 
+  применение(для записи того что вводит пользователь)
+  Пример скрипта 
+     #!/bin/bash
+     echo -n "What is your name? : "
+     read Name
+     echo "Hellow $Name"
+  Вызов 
+     ~/.myscript/lesson3.sh
+     вводим имя What is your name? : Иван
+  Вывод
+     Hellow Иван
+
+
+
+
+
   
