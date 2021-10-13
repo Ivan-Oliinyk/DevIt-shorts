@@ -178,7 +178,22 @@ read
     list_files
 
    
+РЕКУРСИЯ
 
+  Example() {
+    echo -n "Сколько будет 2 + 2 ?  :"
+    read answer
+    if [[ $answer == 4 ]];then
+      echo "Ответ верный 2 + 2 = $answer"
+    else
+      echo "Ответ не верный попробуйте еще раз"
+      echo 
+      Example
+    fi
+  }
+
+  echo "Пример рекурсивной функции: "
+  Example
 
 
 
