@@ -98,7 +98,8 @@ read
             echo "На этот товар скидок нету";;
      esac
      
-  ВЛОЖЕННОСТЬ ОПЕРАТОРОВ 
+  ВЛОЖЕННОСТЬ ОПЕРАТОРОВ
+     (ВАЖНО! Соблюдать все отступы в условии)
      echo "Enter phone model"
      read brand
      if [[ $brand == "samsung" ]] || [[ $brand == "nokia" ]] || [[ $brand == "mi" ]] || [[ $brand == "iphone" ]]; then 
