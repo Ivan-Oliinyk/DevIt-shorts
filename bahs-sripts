@@ -168,6 +168,14 @@ read
         echo "$n"
         n=$(( $n+1 ));
     done
+    
+    FUNCTION 
+    list_files() {
+      echo -n "Выводим содержимое каталога => "
+      cd ~/docker
+      ls;
+    }
+    list_files
 
    
 
