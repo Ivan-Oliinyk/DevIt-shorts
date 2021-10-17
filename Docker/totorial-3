@@ -19,4 +19,22 @@
         (docer run lorf91/cowsay99 cowsay "Hello !") 
         (Сначала пытается найти образ на компьюьере, после когда его не найдет идет на репозиторий скачивает его от туда как результат
           у нас появляется и образ и контейнер и все работате)
+  
+  LESSON 4
+  
+  Dockerfile 
+    FROM ubuntu (система на которой будет развернут образ)
+    MAINTAINER ivan <lorf1991@gmail.com> (данные про автора  образа)
+    RUN apt-get update && apt-get install -y cowsay && ln -s /usr/games/cowsay /usr/bin/cowsay 
+      (Список команд которые вызовутся при запуске контейнера)
+      (apt-get update -> обновление индексов)
+      (apt-get install -y cowsay -> установка приложения cowsay; -y нужен что бы подавить запрос без него вызовиться ошибка)
+      (ln -s /usr/games/cowsay /usr/bin/cowsay -> создание символьной ссылки)
+      (&& -> для  обьединения комманд)
+      
+    ENTRYPOINT ["cowsay"] (точка входа в данному случае сразу вызовиться команда cowsay(она же /usr/games/cowsay))
+    
+    
+    
+  
      
