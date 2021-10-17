@@ -51,4 +51,5 @@ docker run -d tomee ->
 
 docker images - посмотреть все образы 
 
-
+docker exec -it workshop1 /bin/bash (интерактивно заходим в фаловую директорию образа)
+ 
