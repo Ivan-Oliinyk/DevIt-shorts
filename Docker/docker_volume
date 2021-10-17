@@ -13,7 +13,7 @@ docker volume create volume-name
 docker volume ls
 
 Просмотреть том:
-docker volume inspect volume name 
+docker volume inspect volume-name 
 
 Удалить том:
 docker volume rm volume-name
@@ -21,3 +21,32 @@ docker volume rm volume-name
 Удалить все неиспользуемые локальные тома:
 docker volume prune
 
+Все тома(volume) храняться в директории
+/var/libs/docker/volumes
+
+ПРИМЕР ИСПОЛЬЗОВАНИЯ
+  Создаем том 
+    docker volume create my-volume
+  
+  Для примера созданем контейнер 
+    docker run -it -v my-volume:/data --name container-1 lorf91/cowsay
+      где 
+        docker run -it ->(создание контейнера в инетрактивном режиме (тоесть мы остаемся в нем посел его запуска))
+        -v my-volume:/data -> (создаем том my-volume в директории /data)
+        --name container-1 ->(задаем имя контейнера (container-1))
+        lorf91/cowsay -> образ с докерхаб
+        
+    находясь в контейнере переходим в data
+    cd /data
+    смотрим список файлов (ll, ls , ls -a, ls -all) и видим что директория пустая
+    создаем файл -> (touch file-new-77)
+    проверям и видим что фал есть
+    
+    Далее создаем еще один контейнер выполняем все шаги заного
+      docker run -it -v my-volume:/data --name container-2 lorf91/cowsay
+    Переходим в директорию data 
+    cd /data
+    Проверям список файлов (ls) и мы увидим  файл file-new-77 
+    Если создать доп файлы или изменить текущие то все изменения произойдут и на другом контейнере
+    
+    
