@@ -109,7 +109,7 @@ LESSON 7 (связь между docker-compose and Dockerfile)
           environment:
             MYSQL_ROOT_PASSWORD: 444444
           volumes:
-            - ./databases:/var/lib/mysql  (указываем шде будет хранится база данных хоста на локальном компьютере)
+            - ./databases:/var/lib/mysql  (указываем где будет хранится база данных хоста на локальном компьютере)
 
         adminer:
           build: ./adminer
