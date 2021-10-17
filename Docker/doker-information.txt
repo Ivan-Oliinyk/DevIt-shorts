@@ -52,4 +52,7 @@ docker run -d tomee ->
 docker images - посмотреть все образы 
 
 docker exec -it workshop1 /bin/bash (интерактивно заходим в фаловую директорию образа)
+
+docker save -o grafana.tar grafana/grafana -> (сохранение образа в директории где мы находимся)
+docker save -o grafana.tar grafana/grafana -> (загрузка образа из директории где мы находимся)
  
