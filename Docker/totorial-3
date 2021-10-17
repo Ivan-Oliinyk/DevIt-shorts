@@ -88,4 +88,39 @@
       docker-compose up (запуск в интерактивном режиме)
       docker-compose up -d (для запуска в  фоновом режиме)
 
+
+LESSON 7 (связь между docker-compose and Dockerfile)
+  В папке с проэктом создаем папки с названиями образов
+  получаем такую структуру
+    project
+      adminer ->(папка для докерфайла админера)
+        Dockerfile -> (докерфайл админера)
+      db -> (папка для докерфайла базы данных )
+        Dockerfile -> (докерфайл базы данных)
+      databeses -> (папка для хранения базы данных из хоста)
+      docker-compose.yml -> (файл докер-компосе)
+      
+   docker-compose.yml имеет структуру 
+   version: "3.1"
+      services:
+        db:
+          build: ./db
+          restart: always
+          environment:
+            MYSQL_ROOT_PASSWORD: 444444
+          volumes:
+            - ./databases:/var/lib/mysql  (указываем шде будет хранится база данных хоста на локальном компьютере)
+
+        adminer:
+          build: ./adminer
+          restart: always
+          ports:
+            - 9090:8080
+            
+     Команды для билда 
+         docker-compose build
+         docker-compose up -d 
+    
+  
+
      
