@@ -24,7 +24,7 @@ docker volume prune
 Все тома(volume) храняться в директории
 /var/libs/docker/volumes
 
-ПРИМЕР ИСПОЛЬЗОВАНИЯ
+1)ПРИМЕР ИСПОЛЬЗОВАНИЯ #1 (Обьявление тома при запуске контейнера)
   Создаем том 
     docker volume create my-volume
   
@@ -48,5 +48,51 @@ docker volume prune
     cd /data
     Проверям список файлов (ls) и мы увидим  файл file-new-77 
     Если создать доп файлы или изменить текущие то все изменения произойдут и на другом контейнере
+    
+
+2)ПРИМЕР ИСПОЛЬЗОВАНИЯ №2 (В Dockerfile => VOLUME )
+  VOLUME docker run -v my-volume:/data ...........
+  
+  
+3)ПРИМЕР ИСПОЛЬЗОВАНИЯ №3 
+  (Раширении в рашринении аргумента docker run с явным указанием связываемого каталога)
+  (директория_на_пк:в_контейнере)
+  (/home/ivan/data:/data)
+
+4)ПРИМЕР ИСПОЛЬЗОВАНИЯ #4 (В связке c docker-compose)
+    В папке с проэктом создаем папки с названиями образов
+    получаем такую структуру
+      project
+        adminer ->(папка для докерфайла админера)
+          Dockerfile -> (докерфайл админера)
+        db -> (папка для докерфайла базы данных )
+          Dockerfile -> (докерфайл базы данных)
+        databeses -> (папка для хранения базы данных из хоста)
+        docker-compose.yml -> (файл докер-компосе)
+
+     docker-compose.yml имеет структуру 
+     version: "3.1"
+        services:
+          db:
+            build: ./db
+            restart: always
+            environment:
+              MYSQL_ROOT_PASSWORD: 444444
+            volumes:
+              - ./databases:/var/lib/mysql  (указываем где будет хранится база данных хоста на локальном компьютере)
+
+          adminer:
+            build: ./adminer
+            restart: always
+            ports:
+              - 9090:8080
+
+       Команды для билда 
+           docker-compose build
+           docker-compose up -d 
+
+
+
+  
     
     
