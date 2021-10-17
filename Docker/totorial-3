@@ -33,8 +33,59 @@
       (&& -> для  обьединения комманд)
       
     ENTRYPOINT ["cowsay"] (точка входа в данному случае сразу вызовиться команда cowsay(она же /usr/games/cowsay))
-    
-    
-    
   
+  
+  LESSON 5
+  
+  (Связывание 2х контейнеров)
+  -1)Ищем на docker hub  mariadb (читаем инструкцию по установке)
+      docker run -p 127.0.0.1:3306:3306  --name mysqlserver -e MARIADB_ROOT_PASSWORD=123456 -d mariadb
+        где
+          -p 127.0.0.1:3306:3306 (порт на котором откроется база данных)
+          --name mysqlserver (задаем имя нашей базе данных)
+          -e MARIADB_ROOT_PASSWORD=123456 (задаем пароль базе данных)
+          -d mariadb (запуск базы данных как демона)
+   -2)Ищем на docker hub  adminer(читаем инструкцию по установке)
+       docker run --link mysqlserver:db -p 8080:8080 adminer
+          где 
+            --link (указывает на связь образа с другим образом)
+            --link mysqlserver:db (mysqlserver - укахывает на образ с которым будет связываться; 
+              :db - префикс указывающий что это база данных)
+            -p 8080:8080 (порт на котором будет работать админер)
+            adminer - название образа
+     3)После запуска можно зайти на и мы зайдем сервер с базой данных
+        localhost:8080 
+        name=root
+        password=123456
+     
+  
+  LESSON 6
+  
+  
+  (composse)
+    (нужно следить за версиями)
+    docker -v
+    docker-compose -v
+    
+    Далее заходим на сайт docker hub ищем mariadb ищем как установить через docker-compose 
+    Находим такие парамтры файла
+    docker-compose.yml или docker-compose.yаml
+      version: "3.1" (версия docker-compose)
+        services: 
+          db:
+            image: mariadb (образ maria)
+            restart: always (указывает на то что в случае падения сервера он будет перезагружен и поднят заного)
+            environment: 
+              MYSQL_ROOT_PASSWORD: 222222 (пароль от базы данных)
+
+          adminer:  
+            image: adminer  (установка adminer)
+            restart: always  (указывает на что если он упадет будет перезагружен и запущен)
+            ports:
+              - 9090:8080 (порт запуска по умолчанию 8080:8080 поменял  для наглядности)
+              
+     для запуска с файла docker-compose 
+      docker-compose up (запуск в интерактивном режиме)
+      docker-compose up -d (для запуска в  фоновом режиме)
+
      
