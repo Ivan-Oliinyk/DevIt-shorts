@@ -1,0 +1,31 @@
+Network Plugins (Сетевые плагины): вы можете установить и использовать стороннюю сеть плагинов с Docker.
+(Разрабатаейте или загрузите из Docker магазинов)
+
+Defauld Nеtworks (сети по умолчанию)
+Каждая установка Docker Enngine автоматически включает три сети по умолчанию:
+
+Если вы не укажите иное,  Docker всегда запускает ваши контейнеры в "bridge" сети.
+
+Управление сетями
+
+Создание сети:
+  docker nerwork create -d bridge network-name
+
+Удаление сети:
+  docker run [OPTIONS] --network=network-name [IMAGE]
+  
+Добавление работающей контейнер в сеть:
+  docker network connect network-name [CONTAINER ID]
+  
+Отключение контейнера от сети:
+  docker network disconnect network-name [CONTAINER ID]
+  
+Просмотр сеть:
+  docker network inspect network-name
+  
+Удалить все неиспользуемые сети:
+  docker network prune
+
+Посмотерть все сети в docker 
+  docker network ls
+
