@@ -70,3 +70,24 @@ task4
 
 console.log( Math.round(Math.random() * (16 - 11)) + 11);
 
+
+
+Objects
+
+1)Есть массив объектов 
+  const friends = [
+    { name: "Mango", online: false },
+    { name: "Tango", online: true },
+    { name: "Bango", online: false },
+    { name: "Jango", online: true },
+    { name: "Kango", online: true },
+    { name: "Pango", online: false },
+  ];
+  
+  1) Найти есть ли совпадение по имени "Kango"
+  2) Создать функцию которая будет возвращать объект (friendsStatus) в которм будет:
+      1) Обьект со значенем friendsOnline : count
+      2) Массив друзей онлайн
+
+
+
