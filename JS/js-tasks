@@ -74,20 +74,40 @@ console.log( Math.round(Math.random() * (16 - 11)) + 11);
 
 Objects
 
-1)Есть массив объектов 
-  const friends = [
-    { name: "Mango", online: false },
-    { name: "Tango", online: true },
-    { name: "Bango", online: false },
-    { name: "Jango", online: true },
-    { name: "Kango", online: true },
-    { name: "Pango", online: false },
-  ];
-  
-  1) Найти есть ли совпадение по имени "Kango"
-  2) Создать функцию которая будет возвращать объект (friendsStatus) в которм будет:
-      1) Обьект со значенем friendsOnline : count
-      2) Массив друзей онлайн
+ 1)Есть массив объектов 
+      const friends = [
+        { name: "Mango", online: false },
+        { name: "Tango", online: true },
+        { name: "Bango", online: false },
+        { name: "Jango", online: true },
+        { name: "Kango", online: true },
+        { name: "Pango", online: false },
+      ];
 
+      1) Найти есть ли совпадение по имени "Kango"
+      2) Создать функцию которая будет возвращать объект (friendsStatus) в которм будет:
+          1) Обьект со значенем friendsOnline : count
+          2) Массив друзей онлайн
+
+  2)Написать функцию которая будет проверять ключ значения 2х объектов и выводить true если они равны
+  
+      function isValueOfObjectEqual(obj1, obj2) {
+        if (Object.keys(obj1).length !== Object.keys(obj2).length) {
+          return false;
+        }
+      
+        let result = false;
+
+        for (const key in c) {
+          for (const keys in d) {
+            if (key === keys && c.key === d.keys) {
+              result = true;
+            }
+          }
+        }
+
+        return result;
+      }
+    
 
 
