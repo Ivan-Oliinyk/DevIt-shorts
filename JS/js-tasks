@@ -95,18 +95,20 @@ Objects
         if (Object.keys(obj1).length !== Object.keys(obj2).length) {
           return false;
         }
-      
-        let result = false;
 
-        for (const key in c) {
-          for (const keys in d) {
-            if (key === keys && c.key === d.keys) {
-              result = true;
+        let result = false
+
+        for (const key in obj1) {
+          for (const keys in obj2) {
+            if (key === keys && obj1.key === obj2.keys) {
+              result = true
+            } else {
+              return false
             }
           }
         }
 
-        return result;
+        return result
       }
     
 
