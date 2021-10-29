@@ -111,5 +111,13 @@ Objects
         return result
       }
     
+    3) Создать функциию которая принимает массив чисел и возвращает массив отсортированный по нечетным элементам при этом четные остаются на своем месте 
+    function sortArray(array) {
+      const odd = array.filter(el => el % 2).sort((a, b) => a - b)
+      return array.map(el => el % 2 === 0 ? el : odd.shift())
+    }
+
+    console.log(sortArray([5, 8, 6, 3, 4]))
+    console.log(sortArray([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]))
 
 
